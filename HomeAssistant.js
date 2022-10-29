@@ -13,6 +13,10 @@ module.exports = class HomeAssistant {
     constructor(node, cfg, device_info) {
         this.device_info = device_info
         node.config = cfg.config
+        node.mqttConfig = {
+            retain: cfg.retain,
+            qos: cfg.qos
+        }
         this.node = node
         const { name } = cfg
         const entity_id = object_id(name)
@@ -128,11 +132,12 @@ module.exports = class HomeAssistant {
         this.node.send(arr)
     }
 
-    publish(topic, payload, msg = "") {
+    publish(topic, payload, msg = "", config = this.mqttConfig) {
         const type = Object.prototype.toString.call(payload)
         switch (type) {
             case '[object Uint8Array]':
-                this.node.server.client.publish(topic, payload, { retain: false })
+                const newConfig = Object.assign({}, config, { retain: false })
+                this.node.server.client.publish(topic, payload, newConfig)
                 return;
             case '[object Object]':
                 payload = JSON.stringify(payload)
@@ -141,7 +146,7 @@ module.exports = class HomeAssistant {
                 payload = String(payload)
                 break;
         }
-        this.node.server.client.publish(topic, payload)
+        this.node.server.client.publish(topic, payload, config)
         if (msg) {
             this.node.status({ fill: "green", shape: "ring", text: `${msg}：${payload}` });
         }

@@ -4,7 +4,11 @@
         "mqttServer": "MQTT Server",
         "entityName": "Entity Name",
         "deviceName": "Device Name",
-        "config": "Configuration"
+        "config": "Configuration",
+        "mqttQos": "QOS",
+        "mqttRetain": "Retain",
+        "mqttFalse": "False",
+        "mqttTrue": "True"
     },
     "ioLabels": {
         "state": "State",

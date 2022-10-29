@@ -12,6 +12,23 @@
         <input type="text" id="node-input-name" data-i18n="[placeholder]node-red-contrib-ha-mqtt/common:label.entityName">
     </div>
     <div class="form-row">
+        <label for="node-input-qos" data-i18n="node-red-contrib-ha-mqtt/common:label.mqttQos"></label>
+        <select id="node-input-qos">
+            <option value=""></option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-retain" data-i18n="node-red-contrib-ha-mqtt/common:label.mqttRetain"></label>
+        <select id="node-input-retain">
+            <option value=""></option>
+            <option value="false" data-i18n="node-red-contrib-ha-mqtt/common:label.mqttFalse"></option>
+            <option value="true" data-i18n="node-red-contrib-ha-mqtt/common:lable.mqttTrue"></option>
+        </select>
+    </div>
+    <div class="form-row">
         <label for="node-input-unit_of_measurement" data-i18n="label.unit"></label>
         <input type="text" id="node-input-unit_of_measurement" placeholder="%">
     </div>
